@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <center><img src="https://sayingimages.com/wp-content/uploads/demanding-snake-meme.jpg"> </center>
 <title>Snake Game</title>
 <script type="text/javascript">
 window.onload = function() {
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d'),
-    score = 0,
+    points = 0,
     level = 0,
     direction = 0,
-    snake = new Array(3);
+    snake = new Array(7);
 
     var map = new Array(20);
     for (var i = 0; i < map.length; i++) {
         map[i] = new Array(20);
   }
 
-  canvas.width = 204;
-  canvas.height = 224;
+  canvas.width = 400;
+  canvas.height = 400;
 
   var body = document.getElementsByTagName('body')[0];
   body.appendChild(canvas);
-    map = generateSnake(map);
-    map = generateFood(map);
+    map = makeSnake(map);
+    map = snakeFood(map);
 
-    drawGame();
+    createGame();
 
-  function drawGame() {
+  function createGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    drawMain();
-
+    drawGame();
     for (var x = 0; x < map.length; x++) {
         for (var y = 0; y < map[0].length; y++) {
             if (map[x][y] === 1) {
-              ctx.fillStyle = 'black';
+              ctx.fillStyle = 'purple';
               ctx.fillRect(x * 10, y * 10 + 20, 10, 10);
     } else if (map[x][y] === 2) {
               ctx.fillStyle = 'red';
@@ -44,15 +45,15 @@ window.onload = function() {
     }
   }
 
-  function drawMain() {
+  function drawGame() {
     ctx.lineWidth = 2;
     ctx.strokeStyle = 'blue';
-        ctx.strokeRect(2, 20, canvas.width - 4, canvas.height - 24);
+        ctx.strokeRect(2, 20, canvas.width - 4, canvas.height - 40);
         ctx.font = '12px sans-serif';
-        ctx.fillText('Score: ' + score + ' - Level: ' + level, 2, 12);
+        ctx.fillText('Points Earned: ' + points + ' & Level Reached: ' + level, 2, 12);
   }
 
-    function generateFood(map) {
+    function snakeFood(map) {
         var rndX = Math.round(Math.random() * 19),
             rndY = Math.round(Math.random() * 19);
 
@@ -65,7 +66,7 @@ map[rndX][rndY] = 1;
 return map;
 }
 
-    function generateSnake(map) {
+    function makeSnake(map) {
         var rndX = Math.round(Math.random() * 19),
             rndY = Math.round(Math.random() * 19);
 
@@ -83,9 +84,9 @@ return map;
   }
 };
 
-
 </script>
 </head>
 <body>
-<h1><center>Jessica Beitler and Kenny Fulton's snake game project.</center></h1>
+<h1><center>Welcome to the snake game! Try to collect as much snake food (purple square) as possible without hitting the blue edges!</center></h1>
+<h2><center>Directions: Use the arrow keys to guide the snake.</center></h2>
 </html>

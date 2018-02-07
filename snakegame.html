@@ -2,6 +2,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <center><img src="https://sayingimages.com/wp-content/uploads/demanding-snake-meme.jpg"> </center>
 <title>Snake Game</title>
 <script type="text/javascript">
 window.onload = function() {
@@ -10,15 +11,15 @@ window.onload = function() {
     points = 0,
     level = 0,
     direction = 0,
-    snake = new Array(3);
+    snake = new Array(7);
 
     var map = new Array(20);
     for (var i = 0; i < map.length; i++) {
         map[i] = new Array(20);
   }
 
-  canvas.width = 204;
-  canvas.height = 224;
+  canvas.width = 400;
+  canvas.height = 400;
 
   var body = document.getElementsByTagName('body')[0];
   body.appendChild(canvas);
@@ -82,7 +83,6 @@ return map;
 
   }
 };
-
 
 </script>
 </head>

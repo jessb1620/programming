@@ -8,3 +8,11 @@ h2 {
   text-decoration: underline;
   font-style: italic;
 }
+canvas {
+    position: absolute;
+    top:50;
+    bottom: 50;
+    left: 0;
+    right: 0;
+    margin:auto;
+}

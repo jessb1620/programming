@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
+  <center><img src="https://sayingimages.com/wp-content/uploads/demanding-snake-meme.jpg"></center>
+
+<title>Snake Game</title>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="snake.js"></script>
+<script type="text/javascript">
+
+$(function() {
+  var canvas = document.createElement('canvas');
+  var ctx = canvas.getContext('2d');
+
+  canvas.width = 230;
+  canvas.height = 230;
+
+  var body = document.getElementsByTagName('body')[0];
+  body.appendChild(canvas);
+
+  snake.initialize();
+
+  snake.listen(function(map) {
+    if (!snake.isActive()) {
+      // we are done
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'black';
+      ctx.font = '18px sans-serif';
+      ctx.fillText('Game Over!', ((canvas.width / 2) - (ctx.measureText('Game Over!').width / 2)), 50);
+      ctx.font = '14px sans-serif';
+      ctx.fillText('Points: ' + snake.getPoints(), ((canvas.width / 2) - (ctx.measureText('Your score Was: ' + snake.getPoints()).width / 2)), 70);
+    }
+    else {
+      // clear current grid
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // draw the border
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = 'black';
+      ctx.strokeRect(2, 20, canvas.width - 4, canvas.height - 24);
+      ctx.fillStyle = 'black';
+      ctx.font = '12px sans-serif';
+      ctx.fillText('Points Earned: ' + snake.getPoints() + ' & Level: ' + snake.getLevel(), 2, 12);
+      // draw the contents
+      for (var x = 0; x < map.length; x++) {
+        for (var y = 0; y < map[0].length; y++) {
+          if (map[x][y] === 1) {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(x * 10, y * 10 + 20, 10, 10);
+          } else if (map[x][y] === 2) {
+            ctx.fillStyle = 'darkgreen';
+            ctx.fillRect(x * 10, y * 10 + 20, 10, 10);
+          }
+        }
+      }
+    }
+  });
+
+});
+
+</script>
+</head>
+<body>
+<h1><center>Welcome to the snake game! Try to collect as much snake food (black square) as possible without hitting the green edges!</center></h1>
+<h2><center>Directions: Use the arrow keys to guide the snake.</center></h2>
+<center><input type="button" value="Play Again" onClick="location.reload(true)"></center>
+</html>

@@ -13,7 +13,7 @@ var snake = (function() {
       direction = 0,
       snake = new Array(4),
       active = true,
-      speed = 450;
+      speed = 380;
 
   function initialize() {
 
